@@ -2,6 +2,7 @@ package common
 
 import (
 	"fmt"
+	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"oceanlearn.learn/ginessential/model"
@@ -11,12 +12,12 @@ import (
 var DB *gorm.DB
 
 func InitDB() *gorm.DB {
-	host := "localhost"
-	port := "3306"
-	database := "ginessential"
-	username := "root"
-	password := "4.234.23123"
-	charset := "utf8"
+	host := viper.GetString("datasource.host")
+	port := viper.GetString("datasource.port")
+	database := viper.GetString("datasource.database")
+	username := viper.GetString("datasource.username")
+	password := viper.GetString("datasource.password")
+	charset := viper.GetString("datasource.charset")
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=%s&parseTime=true",
 		username,
 		password,
